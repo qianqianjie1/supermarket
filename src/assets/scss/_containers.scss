@@ -16,11 +16,26 @@
   padding-bottom: $tabbar-height;
 }
 
-.g-footer-container{
+.g-footer-container,.g-header-container{
   position: absolute;
-  bottom: 0;
   left: 0;
   width: 100%;
+}
+
+.g-header-container{
+  top: 0;
+  z-index: $navbar-z-index;
+}
+
+.g-footer-container{
+  bottom: 0;
   z-index: $tabbar-z-index;
   box-shadow: 0 0 10px 0 hsla(0, 6%, 58%, 0.6);
+}
+
+.g-backtop-container{
+  position: absolute;
+  z-index: $backtop-z-index;
+  right: 10px;
+  bottom: $tabbar-height + 10px;
 }
