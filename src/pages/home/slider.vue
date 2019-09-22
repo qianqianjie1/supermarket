@@ -2,6 +2,7 @@
   <div class="swiper-wrapper">
     <ytang-loading v-if="!sliders.length"></ytang-loading>
     <ytang-slider
+      :data="sliders"
       :direction="direction"
       :loop="loop"
       :interval="interval"
@@ -44,8 +45,11 @@
       ytangLoading
     },
     methods: {
+      update() {
+        return this.getSliders();
+      },
       getSliders() {
-        getHomeSlider().then(data => {
+        return getHomeSlider().then(data => {
           this.sliders = data;
         });
       }

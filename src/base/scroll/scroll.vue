@@ -13,7 +13,7 @@
 <script>
   import {swiper, swiperSlide} from 'vue-awesome-swiper';
   import MeLoading from 'base/loading/loading';
-  import {PULL_DOWN_HEIGHT, PULL_DOWN_TEXT_INIT, PULL_DOWN_TEXT_START, PULL_DOWN_TEXT_ING, PULL_DOWN_TEXT_END, PULL_UP_HEIGHT, PULL_UP_TEXT_INIT, PULL_UP_TEXT_START, PULL_UP_TEXT_ING, PULL_UP_TEXT_END} from './config';
+  import {PULL_DOWN_HEIGHT, PULL_DOWN_TEXT_INIT, PULL_DOWN_TEXT_START, PULL_DOWN_TEXT_ING, PULL_DOWN_TEXT_END} from './config';
 
   export default {
     name: 'Scroll',
@@ -65,15 +65,15 @@
         this.$refs.swiper && this.$refs.swiper.swiper.update();
       },
       scroll() {
+        console.log('jjj');
+        const swiper = this.$refs.swiper.swiper;
         if (this.pulling) {
           return;
         }
-        const swiper = this.$refs.swiper.swiper;
         if (swiper.translate > 0) {
           if (!this.pullDown) {
             return;
           }
-          this.pulling = true;
           if (swiper.translate > PULL_DOWN_TEXT_END) {
             this.$refs.pullDownLoading.setText(PULL_DOWN_TEXT_START);
           }
@@ -89,6 +89,7 @@
           if (!this.pullDown) {
             return;
           }
+          this.pulling = true;
           swiper.allowTouchMove = false; // 禁止触摸
           swiper.setTransition(swiper.params.speed);
           swiper.setTranslate(PULL_DOWN_HEIGHT);
@@ -100,7 +101,7 @@
       pullDownFun() {
         const swiper = this.$refs.swiper.swiper;
         this.pulling = false;
-        this.$refs.pullDownLoading.setText(PULL_UP_TEXT_END);
+        this.$refs.pullDownLoading.setText(PULL_DOWN_TEXT_END);
         swiper.params.virtualTranslate = false;
         swiper.allowTouchMove = true;
         swiper.setTransition(swiper.params.speed);

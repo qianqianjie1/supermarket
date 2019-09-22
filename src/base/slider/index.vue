@@ -1,6 +1,6 @@
 <template>
   <div class="ytang-slider">
-    <swiper :options="swiperOption">
+    <swiper :options="swiperOption" :key="keyId">
       <slot></slot>
       <div class="swiper-pagination" v-if="pagination" slot="pagination"></div>
     </swiper>
@@ -16,6 +16,12 @@
       swiper
     },
     props: {
+      data: {
+        type: Array,
+        default() {
+          return [];
+        }
+      },
       direction: {
         type: String,
         default: 'horizontal',
@@ -44,6 +50,7 @@
     },
     data() {
       return {
+        keyId: Math.random(),
         swiperOption: {
           watchOverflow: true,
           direction: this.direction,
@@ -52,12 +59,21 @@
             disableOnInteraction: false
           } : false,
           slidesPerView: 1,
-          loop: this.loop,
+          loop: this.data.length <= 1 ? false : this.loop,
           pagination: {
             el: this.pagination ? '.swiper-pagination' : null
           }
         }
       };
+    },
+    watch: {
+      data(newData) {
+        if (newData.length === 0) {
+          return;
+        }
+        this.swiperOption.loop = newData.length <= 1 ? false : this.loop;
+        this.keyId = Math.random();
+      }
     }
   };
 </script>

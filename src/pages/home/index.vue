@@ -8,7 +8,7 @@
       pullDown
       @pull-down-fun="pullToRefresh"
     >
-      <home-slider></home-slider>
+      <home-slider ref="slider"></home-slider>
       <home-nav></home-nav>
       <home-seal @loaded="getFinished"></home-seal>
     </ytang-scroll>
@@ -43,11 +43,12 @@
           this.finished = true;
         }
       },
-      pullToRefresh(end) { // 定时器模拟加载数据
-        setTimeout(() => {
-          console.log('刷新成功');
-          end();
-        }, 1000);
+      pullToRefresh(end) {
+        this.$refs.slider.update().then(end);
+        // setTimeout(() => {
+        //   console.log('刷新成功');
+        //   end();
+        // }, 1000);
       }
     }
   };
