@@ -46,7 +46,7 @@
 
     &-center {
       flex: 1;
-      margin: 0 auto;
+      margin: 0 10px;
     }
 
     &-right {
