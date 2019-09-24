@@ -50,8 +50,15 @@
     },
     data() {
       return {
-        keyId: Math.random(),
-        swiperOption: {
+        keyId: Math.random()
+      };
+    },
+    created() {
+      this.init();
+    },
+    methods: {
+      init() {
+        this.swiperOption = {
           watchOverflow: true,
           direction: this.direction,
           autoplay: this.interval ? {
@@ -63,8 +70,8 @@
           pagination: {
             el: this.pagination ? '.swiper-pagination' : null
           }
-        }
-      };
+        };
+      }
     },
     watch: {
       data(newData) {

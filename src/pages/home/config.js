@@ -4,7 +4,7 @@ export const sliderOptions = {
   interval: 0,
   pagination: true
 };
-
+export const HEADER_TRANSITION_HEIGHT = 100;
 export const NAVLIST = [
   // 原nav.uve的数据
   {

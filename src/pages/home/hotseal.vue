@@ -46,6 +46,9 @@
       this.getSealList();
     },
     methods: {
+      update() {
+        return this.getSealList();
+      },
       getSealList() {
         if (this.curPage > this.totalPage) {
           return Promise.reject(new Error('没有更多了'));
@@ -56,7 +59,7 @@
               this.curPage++;
               this.totalPage = data.totalPage;
               this.sealList = this.sealList.concat(data.itemList);
-              this.$emit('loaded', 'finished');
+              this.$emit('loaded', this.sealList);
               resolve();
             }
           });
