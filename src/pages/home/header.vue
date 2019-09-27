@@ -1,14 +1,20 @@
 <template>
   <ytang-navsearchbar class="navbar" v-show="isVisible">
     <i class="iconfont icon-scan" slot="left"></i>
-    <div slot="center">搜索框</div>
+    <ytang-search
+      showFake
+      :placeholder="value"
+      @click.native="goSearch"
+      slot="center"
+    ></ytang-search>
     <i class="iconfont icon-msg" slot="right"></i>
   </ytang-navsearchbar>
 </template>
 
 <script>
   import ytangNavsearchbar from 'base/navSearchBar/index';
-
+  import ytangSearch from 'base/searchBar';
+  import {HEADER_SEARCH_PLACEHOLDER} from './config';
   export default {
     name: 'HomeHeader',
     data() {
@@ -16,8 +22,12 @@
         isVisible: true
       };
     },
+    created() {
+      this.value = HEADER_SEARCH_PLACEHOLDER;
+    },
     components: {
-      ytangNavsearchbar
+      ytangNavsearchbar,
+      ytangSearch
     },
     methods: {
       show() {
@@ -25,6 +35,9 @@
       },
       hide() {
         this.isVisible = false;
+      },
+      goSearch() {
+        this.$router.push('/search');
       }
     }
   };

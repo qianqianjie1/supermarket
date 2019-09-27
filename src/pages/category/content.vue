@@ -5,7 +5,10 @@
         <ytang-loading></ytang-loading>
       </div>
     </div>
-    <ytang-scroll ref="scroll">
+    <ytang-scroll
+      ref="scroll"
+      @scroll-end="listenerScrolled"
+    >
       <div class="content-container">
         <div class="content" v-if="contentList.banner">
           <a :href="contentList.banner.linkUrl" class="content-banner">
@@ -38,7 +41,7 @@
       </div>
     </ytang-scroll>
     <div class="g-backtop-container especial-position">
-      <ytang-back-top :visible="isVisible"></ytang-back-top>
+      <ytang-back-top :visible="isVisible" @back-top="backToTop"></ytang-back-top>
     </div>
   </div>
 </template>
@@ -64,7 +67,7 @@
     data() {
       return {
         isLoading: true,
-        isVisible: true,
+        isVisible: false,
         contentList: {}
       };
     },
@@ -90,6 +93,12 @@
       },
       updateScroll() {
         this.$refs.scroll && this.$refs.scroll.updataScroll();
+      },
+      listenerScrolled(translate, swiper) {
+        this.isVisible = translate < 0 && -translate > swiper.height;
+      },
+      backToTop() {
+        this.$refs.scroll && this.$refs.scroll.scrollToTop();
       }
     }
   };

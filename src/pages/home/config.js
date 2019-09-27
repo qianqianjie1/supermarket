@@ -5,6 +5,7 @@ export const sliderOptions = {
   pagination: true
 };
 export const HEADER_TRANSITION_HEIGHT = 100;
+export const HEADER_SEARCH_PLACEHOLDER = '双十一好礼提前抢购，GoGoGo!';
 export const NAVLIST = [
   // 原nav.uve的数据
   {

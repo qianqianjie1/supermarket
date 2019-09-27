@@ -148,3 +148,4 @@ export const categoryNames = [
     'id': 'WQ2002'
   }
 ];
+export const HEADER_SEARCH_PLACEHOLDER = '双十一好礼提前抢购，GoGoGo!';

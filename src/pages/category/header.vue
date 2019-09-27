@@ -1,18 +1,33 @@
 <template>
   <div class="category-header">
     <ytang-navsearchbar>
-      <span slot="center">搜索框</span>
-      <i class="iconfont icon-msg" slot="right"></i>
+      <ytang-search
+        showFake
+        :placeholder="value"
+        @click.native="goSearch"
+        slot="center"
+      ></ytang-search>
     </ytang-navsearchbar>
   </div>
 </template>
 
 <script>
   import ytangNavsearchbar from 'base/navSearchBar/index';
+  import {HEADER_SEARCH_PLACEHOLDER} from './config';
+  import ytangSearch from 'base/searchBar';
   export default {
     name: 'categoryHeader',
     components: {
-      ytangNavsearchbar
+      ytangNavsearchbar,
+      ytangSearch
+    },
+    created() {
+      this.value = HEADER_SEARCH_PLACEHOLDER;
+    },
+    methods: {
+      goSearch() {
+        this.$router.push('/search');
+      }
     }
   };
 </script>

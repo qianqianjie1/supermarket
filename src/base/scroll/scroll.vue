@@ -72,7 +72,9 @@
         };
       },
       updataScroll() {
-        this.$refs.swiper && this.$refs.swiper.swiper.update();
+        this.$nextTick(() => {
+          this.$refs.swiper && this.$refs.swiper.swiper.update();
+        });
       },
       scrollToTop(speed, runCallbacks) {
         this.$refs.swiper && this.$refs.swiper.swiper.slideTo(0, speed, runCallbacks);
